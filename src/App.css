@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+aside {
+  background-color: darkslategray;
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+}
+
+.leftPad {
+  background-color: darkslategray;
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
