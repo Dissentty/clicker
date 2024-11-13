@@ -60,18 +60,17 @@ function App() {
     <div className="App">
       <header className="App-header">
         <aside>
-          <div>Shop</div>
+          <div className="card">Shop
           <p>Buy mine (-{costMine.toFixed(1)} points, +1 income)</p>
           <button onClick={buy_mine}>buy mine</button>
-          {isPubVisible && <div>
+          </div>
+          {isPubVisible && <div className='card'>
           <p>Buy pub (-{costPub.toFixed(1)} points, +12 income)</p>
           <button onClick={buy_pub}>buy pub</button>
             </div>}
-          <div>
+          <div className='card'>
           Multi: {multi} <br/>
           count of prestiges: {countPrestiges}
-          </div>
-            <div>
           <button onClick={prestige}>prestige</button>
           </div>
         </aside>

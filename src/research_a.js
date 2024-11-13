@@ -55,13 +55,13 @@ function Reseach_A({ onVisibilityChange }) {
   */
   return (
   <div>
-      {isVisible && <div>
-    Изучение пабов {time_1}
+      {isVisible && <div className="card">
+    Изучение пабов {time_1} <br/>
     <button onClick={startResearch}>
       start research
     </button>
     </div>}
-      {isVisible2 && <div>
+      {isVisible2 && <div className="card">
       Изучение мастерских {time_2}
       <button onClick={startResearch2}>
       start research
