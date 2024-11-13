@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Research_B from "./research_b";
 
 function App() {
@@ -63,12 +63,13 @@ function App() {
 
   const prestige  = () => {
     if (counter >= 50000) {
-      setCounter(0);
+      setCounter(50);
       setIncome(0);
       setCostPub(1000);
       setCostMine(50);
       setMulti((prevValue) => prevValue * 1.1);
       setCountPrestiges((prevValue) => prevValue + 1);
+      setCostWorkshop(10000);
     }
   }
 
@@ -89,7 +90,7 @@ function App() {
           <button onClick={buy_workshop}>buy workshop</button>
           </div>}
           <div className='card'>
-          Multi: {multi} <br/>
+          Multi: {multi.toFixed(2)} <br/>
           count of prestiges: {countPrestiges}
           <button onClick={prestige}>prestige</button>
           </div>
