@@ -1,19 +1,23 @@
 import './App.css';
 import React, {useEffect, useState} from 'react';
-import Research_A from "./research_a";
+import Research_B from "./research_b";
 
 function App() {
   const [counter, setCounter] = React.useState(0);
   const [income, setIncome] = React.useState(0);
   const [costMine, setCostMine] = React.useState(50);
   const [costPub, setCostPub] = React.useState(1000);
+  const [costWorkshop, setCostWorkshop] = React.useState(10000);
   const [clickPower, setClickPower] = React.useState(1);
   const [isPubVisible, setIsPubVisible] = React.useState(false);
+  const [isWorkshopVisible, setIsWorkshopVisible] = React.useState(false);
   const [multi, setMulti] = React.useState(1);
   const [countPrestiges, setCountPrestiges] = React.useState(0);
+  const [countClicks, setCountClicks] = React.useState(0);
 
   const click = () => {
     setCounter(counter + clickPower * multi);
+    setCountClicks((prevValue) => prevValue + 1);
   }
   
   const buy_mine = () => {
@@ -31,6 +35,14 @@ function App() {
       setCostPub((prevValue) => prevValue * 1.1);
     }
   }
+
+  const buy_workshop = () => {
+    if (counter >= costWorkshop) {
+      setIncome((prevValue) => prevValue + 140);
+      setCounter((prevValue) => prevValue - costWorkshop);
+      setCostWorkshop((prevValue) => prevValue * 1.1);
+    }
+  }
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -43,6 +55,10 @@ function App() {
 
   const handleVisibilityChange = (isVisible) => {
     setIsPubVisible(isVisible);
+  };
+  
+  const handleVisibilityChange2 = (isVisible2) => {
+    setIsWorkshopVisible(isVisible2);
   };
 
   const prestige  = () => {
@@ -68,6 +84,10 @@ function App() {
           <p>Buy pub (-{costPub.toFixed(1)} points, +12 income)</p>
           <button onClick={buy_pub}>buy pub</button>
             </div>}
+          {isWorkshopVisible && <div className='card'>
+          <p>Buy workshop (-{costWorkshop.toFixed(1)} points, +140 income)</p>
+          <button onClick={buy_workshop}>buy workshop</button>
+          </div>}
           <div className='card'>
           Multi: {multi} <br/>
           count of prestiges: {countPrestiges}
@@ -75,8 +95,10 @@ function App() {
           </div>
         </aside>
         <aside className="leftPad">
+          <div className='card'>
         passive income: {income}
-          <Research_A onVisibilityChange={handleVisibilityChange}/> 
+        </div>
+          <Research_B onVisibilityChange={handleVisibilityChange} onVisibilityChange2={handleVisibilityChange2}/> 
         </aside>
         <div className="counter">{counter.toFixed(0)}</div>
           <button onClick={click} className="mainButton">

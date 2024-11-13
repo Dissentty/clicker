@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import React from 'react';
 
-function Reseach_A({ onVisibilityChange }) {
+function Reseach_A({ onVisibilityChange, onVisibilityChange2 }) {
   const [time_1, setTime1] = React.useState(30);
   const [time_2, setTime2] = React.useState(90);
   const [isResearching, setIsResearching] = React.useState(false);
@@ -25,11 +25,11 @@ function Reseach_A({ onVisibilityChange }) {
   }
   
   useEffect(() => {
-    let timer;
     if (isResearching1 && time_1 > 0) {
-      timer = setInterval(() => {
+      const timer1 = setTimeout(() => {
         setTime1((prevValue) => prevValue - 1);
       }, 1000);
+      return () => clearTimeout(timer1);
     } else if (time_1 === 0 && isResearching1) {
       // input pubs
       setIsVisible(false);
@@ -38,21 +38,23 @@ function Reseach_A({ onVisibilityChange }) {
       onVisibilityChange(true);
     } 
 
-    return () => clearInterval(timer);
-  }, [isResearching, time_1, onVisibilityChange]);
-  /*
+  }, [isResearching1, time_1, onVisibilityChange]);
+  
   useEffect(() => {
-    let timer;
     if (isResearching2 && time_2 > 0) {
-      timer = setInterval(() => {
+      const timer2 = setTimeout(() => {
         setTime2((prevValue) => prevValue - 1);
       }, 1000);
+      return () => clearTimeout(timer2);
+
     } else if (time_2 === 0 && isResearching2) {
       setIsResearching(false);
       setIsResearching2(false);
+      setIsVisible2(false);
+      onVisibilityChange2(true);
     }
-  }, [isResearching, time_2])
-  */
+  }, [isResearching2, time_2, onVisibilityChange2])
+  
   return (
   <div>
       {isVisible && <div className="card">
