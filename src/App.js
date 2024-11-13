@@ -97,7 +97,7 @@ function App() {
         </aside>
         <aside className="leftPad">
           <div className='card'>
-        passive income: {income}
+        passive income: {(income * multi).toFixed(1)}
         </div>
           <Research_B onVisibilityChange={handleVisibilityChange} onVisibilityChange2={handleVisibilityChange2}/> 
         </aside>
